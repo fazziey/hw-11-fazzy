@@ -4,20 +4,15 @@ function Board() {
   const [squares, setSquares] = React.useState(Array(9).fill(null));
 
   function selectSquare(square) {
-    // Return early if the square is already filled or the game is over
     if (squares[square] || calculateWinner(squares)) {
       return;
     }
-    // Create a copy of the squares array
     const newSquares = [...squares];
-    // Set the value of the selected square to the next player's symbol
     newSquares[square] = calculateNextValue(squares);
-    // Update the state of the squares array
     setSquares(newSquares);
   }
 
   function restart() {
-    // Reset the state of the squares array
     setSquares(Array(9).fill(null));
   }
 
@@ -80,7 +75,6 @@ function Game() {
   );
 }
 
-// eslint-disable-next-line no-unused-vars
 function calculateStatus(winner, squares, nextValue) {
   return winner
     ? `Winner: ${winner}`
@@ -89,12 +83,10 @@ function calculateStatus(winner, squares, nextValue) {
     : `Next player: ${nextValue}`;
 }
 
-// eslint-disable-next-line no-unused-vars
 function calculateNextValue(squares) {
   return squares.filter(Boolean).length % 2 === 0 ? "X" : "O";
 }
 
-// eslint-disable-next-line no-unused-vars
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
